@@ -176,7 +176,7 @@ spec:
           - name: ELASTICSEARCH_HOST
             value: {{ default "wso2-elasticsearch-master" .Values.wso2.centralizedLogging.logstash.elasticsearch.host }}
           - name: ELASTICSEARCH_PORT
-            value: {{ default "9200" .Values.wso2.centralizedLogging.logstash.elasticsearch.port }}
+            value: {{ default "9200" .Values.wso2.centralizedLogging.logstash.elasticsearch.port | quote  }}
       {{ end }}
         lifecycle:
           preStop:

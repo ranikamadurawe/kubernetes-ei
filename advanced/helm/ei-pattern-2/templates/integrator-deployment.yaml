@@ -181,10 +181,10 @@ spec:
             - name: shared-plugins
               mountPath: /usr/share/logstash/plugins/
           env:
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
             - name: NODE_ID
               value: {{ .Release.Name }}-integrator-node
             - name: NODE_IP
@@ -204,7 +204,7 @@ spec:
             - name: ELASTICSEARCH_HOST
               value: {{ default "wso2-elasticsearch-master" .Values.wso2.centralizedLogging.logstash.elasticsearch.host }}
             - name: ELASTICSEARCH_PORT
-              value: {{ default "9200" .Values.wso2.centralizedLogging.logstash.elasticsearch.port }}
+              value: {{ default "9200" .Values.wso2.centralizedLogging.logstash.elasticsearch.port | quote }}
         {{ end }}
       serviceAccountName: {{ .Values.kubernetes.svcaccount }}
       {{- if .Values.wso2.deployment.wso2ei.imagePullSecrets }}
